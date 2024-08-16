@@ -388,8 +388,8 @@ TextureImporter:
         y: 287
         width: 40
         height: 35
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19458793}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -402,36 +402,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TX Tree T3 Lower
+      name: TX Tree T3 Upper
       rect:
         serializedVersion: 2
         x: 24
         y: 359
         width: 113
-        height: 64
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d24745cb345f15d4e8380714ce1ddaf9
-      internalID: 21300082
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TX Tree T3 Upper
-      rect:
-        serializedVersion: 2
-        x: 24
-        y: 423
-        width: 113
-        height: 75
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        height: 139
+      alignment: 9
+      pivot: {x: 0.49244136, y: 0.025807772}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -444,36 +423,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TX Tree T1 Lower
+      name: TX Tree T1 Upper
       rect:
         serializedVersion: 2
         x: 295
         y: 361
         width: 79
-        height: 63
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e000a902da7b93543a0c48f5962975b7
-      internalID: 21300122
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TX Tree T1 Upper
-      rect:
-        serializedVersion: 2
-        x: 295
-        y: 424
-        width: 79
-        height: 57
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        height: 120
+      alignment: 9
+      pivot: {x: 0.5235267, y: 0.025857035}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -486,36 +444,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TX Tree T2 Lower
+      name: TX Tree T2 Upper
       rect:
         serializedVersion: 2
         x: 161
         y: 359
         width: 95
-        height: 63
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 315dce2be60554b43bdf5597b28ee495
-      internalID: 21300126
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TX Tree T2 Upper
-      rect:
-        serializedVersion: 2
-        x: 161
-        y: 422
-        width: 95
-        height: 73
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        height: 136
+      alignment: 9
+      pivot: {x: 0.49155933, y: 0.02096378}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -535,8 +472,8 @@ TextureImporter:
         y: 282
         width: 39
         height: 45
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5060214, y: 0.1930976}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -556,8 +493,8 @@ TextureImporter:
         y: 292
         width: 27
         height: 25
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.504939, y: 0.14936523}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -577,8 +514,8 @@ TextureImporter:
         y: 295
         width: 22
         height: 19
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.48056307, y: 0.16879433}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -598,8 +535,8 @@ TextureImporter:
         y: 285
         width: 47
         height: 42
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.49000648, y: 0.15656535}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -619,8 +556,8 @@ TextureImporter:
         y: 290
         width: 38
         height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5061802, y: 0.18347454}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
