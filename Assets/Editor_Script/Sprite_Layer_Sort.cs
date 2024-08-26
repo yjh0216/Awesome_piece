@@ -26,7 +26,7 @@ public class Sprite_Layer_Sort : MonoBehaviour
 
     }
 
-
+    // SpriteRenderer 컴포넌트를 가진 오브젝트들의 레이어와 이름을 디버깅합니다.
     [MenuItem("Yjh Menu/Object layer setup with Sprite Renderer component")]
     static void SpriteRenderer_Order_in_Layer()
     {

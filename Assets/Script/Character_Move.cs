@@ -12,7 +12,9 @@ public class Character_Move : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine("Random_move");
+        //★이대로 시작하면 무한 반복 안에 반복이 생겨서 멈춰버림. 그래서 주석처리.
+        //StartCoroutine("Random_move");
+
 
         //---------------SendMessage에 대해서---------------
         //if(gameObject.TryGetComponent<SpriteRenderer>(out SpriteRenderer sr))
