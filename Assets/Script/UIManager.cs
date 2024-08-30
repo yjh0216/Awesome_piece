@@ -50,7 +50,7 @@ public class UIManager : MonoBehaviour
 
         #region _Button.onClick.AddListener()_
         Scroll_Btn01.onClick.AddListener(Change_Scroll_setting02);
-        // todo : 나머지 버튼들도 예정.
+        // ★ todo : 나머지 버튼들도 예정.
         Select_Building_Btn.onClick.AddListener(Popup_building_Menu_Method);
 
         //-------------------------------------------------------------------------- 둘다 10개의 버튼들이 모두 Build_Type[10]을 가리키고 있음
@@ -128,65 +128,70 @@ public class UIManager : MonoBehaviour
         PopUp_Building_Menu_Obj.transform.localScale = Vector3.zero;
     }
 
-    private void Popup_building_Menu_Method()
+    private void Popup_building_Menu_Method() // 팝업 창을 킨다.
     {
         PopUp_Building_Menu_Obj.transform.localScale = Vector3.one;
-        PopUp_Content.transform.localPosition = new Vector3(0f, -0.1f, 0f);
+        PopUp_Content.transform.localPosition = new Vector3(0f, -0.1f, 0f); // Scroll View가 localScale이 0이 될때마다 아래의 목록들을 비추어서 강제로 위치값 지정.
     }
 
-    private void Popup_at_Back()
+    private void Popup_at_Back() // 팝업 창을 끈다.
     {
         PopUp_Building_Menu_Obj.transform.localScale = Vector3.zero;
     }
 
-    private void Select_Build_Set(int num)
+    private void Select_Build_Set(int num) // 건물 버튼을 클릭하면 세팅까지
     {
         //Debug.Log($"{num}번쩨 버튼 클릭");
         PopUp_Building_Menu_Obj.transform.localScale = Vector3.zero; // Popup_ui를 다시 안보이게 처리.
 
         // obj는 클릭한 버튼 오브젝트의 자식의 자식. 즉, Image 컴포넌트를 가진 building_img.
         GameObject obj;
-        obj = Build_Type[num].gameObject.transform.GetChild(0).GetChild(0).gameObject;
+        obj = Build_Type[num].gameObject.transform.GetChild(0).GetChild(0).gameObject; // 여기서 obj는 "Popup된 건물 선택창의 건물 오브젝트" image.
 
         float width = 0, height = 0;
-        if (obj.TryGetComponent<RectTransform>(out RectTransform rect_A))
+        if (obj.TryGetComponent<RectTransform>(out RectTransform rect_A)) // 이 오브젝트의 RectTransform에 접근해 가로 길이와 세로 길이를 저장.
         {
             width = rect_A.rect.width;
-            height = rect_A.rect.height;
+            height = rect_A.rect.height; // 이 값은 Sprite의 pixel 값을 가지고 있다.
         } // 길이 저장.
 
         if (!obj.TryGetComponent<Image>(out Image img)) // 위의 building_img 오브젝트가 가진 Image 컴포넌트의 SourceImage(sprite)를 사용하기 위해 img를 참조.
             Debug.Log("obj에서 Image 참조 실패");
+        // 이 시점에서 "img"에는 위 "Popup된 건물 선택창의 건물 오브젝트"의 image 컴포넌트의 값을 보유.
 
-        Image img2;
+        Image img2; // 새로이 생성될 오브젝트의 Image컴포넌트에, 위의 Image값을 전달해 담기 위한 img2.
 
-        if(mask_slot_obj.transform.childCount != 0)
+        if(mask_slot_obj.transform.childCount != 0) // 만약 이미 mask_slot_obj에게 자식이 있는 경우
         {
-            Destroy(mask_slot_obj.transform.GetChild(0).gameObject);
+            Destroy(mask_slot_obj.transform.GetChild(0).gameObject); // 이미 있던 자식을 삭제.
         }
 
-        obj = Instantiate(obj, mask_slot_obj.transform);
+        obj = Instantiate(obj, mask_slot_obj.transform); // 여기서 obj는 mask_slot_obj의 자식으로 생성된 오브젝트. (선택된 건물과 같은 타입의 건물 오브젝트 image)
 
-        if(!obj.GetComponent<Image>())
+        if (!obj.GetComponent<Image>()) // obj에게서 Image가 없을 경우 Image컴포넌트를 추가.
             obj.AddComponent<Image>();
+
+        if (!obj.GetComponent<Button>())
+        {
+            obj.AddComponent<Button>();
+            // ★ todo : 메소드를 만들고 여기서 추가된 버튼에게 꾹 누르는 기능을 들을 준비하도록 설정할 것.
+        }
 
         if (obj.TryGetComponent<Image>(out img2))
         {
             //Debug.Log($"적용 테스트... / img2.sprite : {img2.sprite}, img.sprite : {img.sprite}");
-            img2.sprite = img.sprite;
+            img2.sprite = img.sprite; // 선택한 버튼과 동일한 sprite를 Image를 통해 전달해줌.
             
             if(obj.TryGetComponent<RectTransform>(out RectTransform rect_B))
             {
-                rect_B.localPosition = Vector3.zero;
-                rect_B.sizeDelta = new Vector2(width, height);
+                rect_B.localPosition = Vector3.zero; // 생성될 오브젝트의 위치값 설정.
+                rect_B.sizeDelta = new Vector2(width, height); // 생성될 오브젝트의 크기 값 설정.
             }
-            obj.name = img2.name;
+            obj.name = img2.name; // 이름을 똑같게 했으나 뒤에 "(Clone)"이 붙는다. 이거라도 안하면 New GameObject라고 생성됨.
 
-            obj = Build_Type[num].gameObject.transform.GetChild(2).gameObject;
+            obj = Build_Type[num].gameObject.transform.GetChild(2).gameObject; // 여기서 obj는 Text형태의 오브젝트... 이름 String을 그대로 전달해주기 위한 작업.
             if (obj.TryGetComponent<TextMeshProUGUI>(out TextMeshProUGUI child_Text))
                 Select_Building_Name.text = child_Text.text;
-
-            // todo : 나중에 Insert_Text__부분에도 Tip같은게 들어가도록 작업해줄것.
 
         }
 
