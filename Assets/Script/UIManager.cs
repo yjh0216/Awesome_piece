@@ -4,7 +4,6 @@ using UnityEngine;
 
 using UnityEngine.UI;
 using TMPro;
-using Unity.VisualScripting;
 
 public class UIManager : MonoBehaviour
 {
@@ -30,7 +29,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button Select_Building_Btn;
     [SerializeField] private GameObject mask_slot_obj;
     [SerializeField] private TextMeshProUGUI Select_Building_Name;
-    [SerializeField] private GameObject PopUp_Building_Menu_Obj;
+    [SerializeField] private GameObject PopUp_Building_Menu_Obj;        public bool isPopup_buildMenu = false;
     [SerializeField] private GameObject PopUp_Content;
     [SerializeField] private TextMeshProUGUI Tip_text;
 
@@ -43,6 +42,11 @@ public class UIManager : MonoBehaviour
     [Header("Scroll Up/Down 버튼")]
     [SerializeField] private Button scrollUp_Btn;
     [SerializeField] private Button scrollDown_Btn;
+
+    private Vector2 Up_LocalPosition   = new Vector2(9.02f, -790f);
+    private Vector2 Down_LocalPosition = new Vector2(9.02f, -1371f);
+
+    private Vector2 scroll_ui_scale = new Vector2(1.7f, 1.7f);
 
     private void Start()
     {
@@ -91,11 +95,8 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log();
-    }
 
-    Vector2 up_pos = new Vector2(8.41f, -5.53f);
-    Vector2 down_pos = new Vector2(8.41f, -8.57f);
+    }
 
     public void Reset_Scroll()
     {
@@ -106,7 +107,12 @@ public class UIManager : MonoBehaviour
         scrollUp_Btn.gameObject.SetActive(true);
         scrollDown_Btn.gameObject.SetActive(false);
 
-        Scroll_UI_Obj.transform.position = down_pos;
+        //Scroll_UI_Obj.transform.position = down_pos;
+        if (Scroll_UI_Obj.TryGetComponent<RectTransform>(out RectTransform rectTransform))
+        {
+            rectTransform.localPosition = Down_LocalPosition;
+            rectTransform.localScale = scroll_ui_scale;
+        }
 
         if (mask_slot_obj.transform.childCount != 0) // Build에 선택된 건물을 초기화.
         {
@@ -120,7 +126,7 @@ public class UIManager : MonoBehaviour
     // 스크롤의 세팅을 setting_02로 바꿉니다.
     private void Change_Scroll_setting02()
     {
-        if(setting_01.activeSelf)
+        if (setting_01.activeSelf)
         {
             setting_01.SetActive(false);
             setting_02.SetActive(true);
@@ -130,19 +136,20 @@ public class UIManager : MonoBehaviour
 
     private void Popup_building_Menu_Method() // 팝업 창을 킨다.
     {
+        isPopup_buildMenu = true;
         PopUp_Building_Menu_Obj.transform.localScale = Vector3.one;
         PopUp_Content.transform.localPosition = new Vector3(0f, -0.1f, 0f); // Scroll View가 localScale이 0이 될때마다 아래의 목록들을 비추어서 강제로 위치값 지정.
     }
 
     private void Popup_at_Back() // 팝업 창을 끈다.
     {
+        isPopup_buildMenu = false;
         PopUp_Building_Menu_Obj.transform.localScale = Vector3.zero;
     }
 
     private void Select_Build_Set(int num) // 건물 버튼을 클릭하면 세팅까지
     {
-        //Debug.Log($"{num}번쩨 버튼 클릭");
-        PopUp_Building_Menu_Obj.transform.localScale = Vector3.zero; // Popup_ui를 다시 안보이게 처리.
+        Popup_at_Back(); // Popup_ui를 다시 안보이게 처리.
 
         // obj는 클릭한 버튼 오브젝트의 자식의 자식. 즉, Image 컴포넌트를 가진 building_img.
         GameObject obj;
@@ -235,18 +242,24 @@ public class UIManager : MonoBehaviour
         scrollUp_Btn.gameObject.SetActive(false);
         scrollDown_Btn.gameObject.SetActive(true);
 
-        Scroll_UI_Obj.transform.position = up_pos;
+        if (Scroll_UI_Obj.TryGetComponent<RectTransform>(out RectTransform rectTransform))
+            rectTransform.localPosition = Up_LocalPosition;
+
     }
 
     private void scrollDown() // 내리기 버튼 클릭 시.
     {
+        Popup_at_Back();
+
         setting_01.SetActive(true);
         setting_02.SetActive(false);
 
         scrollUp_Btn.gameObject.SetActive(true);
         scrollDown_Btn.gameObject.SetActive(false);
 
-        Scroll_UI_Obj.transform.position = down_pos;
+        if (Scroll_UI_Obj.TryGetComponent<RectTransform>(out RectTransform rectTransform))
+            rectTransform.localPosition = Down_LocalPosition;
+
 
         if (mask_slot_obj.transform.childCount != 0) // Build에 선택된 건물을 초기화.
         {
