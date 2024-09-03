@@ -34,7 +34,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI Tip_text;
 
     [Header("Popup_ui에 있는 건물 버튼들 넣기")]
-    [SerializeField] private List<Button> Build_Type; // 건설할 건물의 버튼타입을 리스트에 넣는다.
+    [SerializeField] public List<Button> Build_Type; // 건설할 건물의 버튼타입을 리스트에 넣는다.
 
     [Header("Popup_ui의 뒤로가기 버튼")]
     [SerializeField] private Button Back_Btn;
@@ -180,9 +180,13 @@ public class UIManager : MonoBehaviour
 
         if (!obj.GetComponent<Button>())
         {
-            obj.AddComponent<Button>();
+            Button btn = obj.AddComponent<Button>();
             // ★ todo : 메소드를 만들고 여기서 추가된 버튼에게 꾹 누르는 기능을 들을 준비하도록 설정할 것.
         }
+
+        if(!obj.GetComponent<ButtonSetup>())
+            obj.AddComponent<ButtonSetup>();
+
 
         if (obj.TryGetComponent<Image>(out img2))
         {
@@ -202,7 +206,8 @@ public class UIManager : MonoBehaviour
 
         }
 
-        switch(num)
+        #region _건물에 따른 Tip 문구 설정_
+        switch (num)
         {
             case 0: // Main_Tower 메인 건물
                 Tip_text.text = "영지에서 가장 중요한 건축물입니다. 영지내의 여러 건물들이 기능하기 위해선 메인 건물을 필요로 하며 영웅을 한명까지 배치할수 있습니다. 배치된 영웅은 모든 게임에서 모든 능력치가 증가합니다. 또한 메인 건물이 특정 레벨에 다를경우 하루중에 랜덤한 시간에 상단의 지원을 받을수 있습니다.";
@@ -235,6 +240,7 @@ public class UIManager : MonoBehaviour
                 Tip_text.text = "마법석은 매우 랜덤한 시간대에 한명의 영웅에게 주문력을 대폭 상승시켜주는 건물입니다. 영웅을 한명까지만 배치 가능하며 배치된 영웅은 PVE전투에서 극히 드문 확률로 주문력이 300% 증가합니다.";
                 break;
         }
+        #endregion
     }
 
     private void scrollUp() // 올리기 버튼 클릭 시.
